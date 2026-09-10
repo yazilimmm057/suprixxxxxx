@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Ceren'e Özel ✨ | 70'ler Romantik Masalı</title>
+  <meta name="description" content="Ceren için 70'ler retro konseptinde, akıcı kaligrafi fontları, süzülen mesaj balonları ve flört oyunlarıyla hazırlanmış sürpriz web sitesi.">
+  
+  <!-- Custom Styling -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Canvas Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+  <!-- 70s Sunset Wave Background -->
+  <div class="retro-sunset-stripes"></div>
+
+  <!-- Background Particle Canvas (Romantic Floating Rose Dust) -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Interactive Dynamic Growing Heart Layer -->
+  <div id="interactive-hearts-layer"></div>
+
+  <!-- Live Upward-Floating Message Balloons Layer (En alttan en üste süzülen balonlar) -->
+  <div id="floating-balloons-container"></div>
+
+  <!-- 70s Floating Mini Vinyl Music Player -->
+  <div id="retro-audio-btn" class="retro-vinyl-bar" title="Romantik 70'ler Melodisini Başlat/Durdur">
+    <div class="mini-vinyl-disk">
+      <div class="mini-vinyl-center"></div>
+    </div>
+    <span id="audio-status-text" class="retro-audio-label">▶ 70's Melodi</span>
+  </div>
+
+  <div class="app-wrapper">
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="seventies-badge">★ 70's RETRO ROMANCE • GÜN 1 ★</div>
+      <h1 class="romantic-script-hero">Ceren için Özel Bir Masal</h1>
+      <p class="hero-tagline-70s">
+        Instagram'da başlayan, ilk günümüzde <span class="highlight-sunset">tam 7 saatlik sesli sohbetle</span> sonsuzlaşan ve her saniyesi huzur veren tatlı bir hikaye...
+      </p>
+
+      <!-- 70s Sunset Curved Mixtape Widget -->
+      <div class="seventies-tape-box">
+        <div class="tape-inner-label">
+          <div class="tape-top-row">
+            <span>SIDE A • 420 DAKİKA</span>
+            <span>STEREO 1970s</span>
+          </div>
+          <div class="tape-song-title">Ceren & Sabri • İlk Günün Şarkısı</div>
+          <div class="tape-reels">
+            <div class="tape-reel-disk">
+              <div class="tape-reel-center"></div>
+            </div>
+            <div style="font-family: var(--font-serif); font-style: italic; font-size: 1rem; color: #e76f51; font-weight: 700;">
+              ◄ 7 SAAT KESİNTİSİZ ►
+            </div>
+            <div class="tape-reel-disk">
+              <div class="tape-reel-center"></div>
+            </div>
+          </div>
+          <div class="tape-quote">
+            "Zamanın nasıl aktığını unutturan, gülüşlerin ve meraklı sorularınla dolu o sihirli gece."
+          </div>
+        </div>
+      </div>
+
+      <!-- 70s Stats Counter Grid -->
+      <div class="seventies-stats-grid">
+        <div class="seventies-stat-card">
+          <div class="seventies-stat-icon">🕰️</div>
+          <div class="seventies-stat-number" id="call-counter">7 Saat</div>
+          <div class="seventies-stat-label">İlk Gün Sesli Konuşma Rekorumuz</div>
+        </div>
+        <div class="seventies-stat-card">
+          <div class="seventies-stat-icon">💭</div>
+          <div class="seventies-stat-number">Sonsuz Soru</div>
+          <div class="seventies-stat-label">Meraklı ve Tatlı Soruların</div>
+        </div>
+        <div class="seventies-stat-card">
+          <div class="seventies-stat-icon">☕</div>
+          <div class="seventies-stat-number">100% Huzur</div>
+          <div class="seventies-stat-label">Benim İçin Konfor Alanından Çıkışın</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEMORY & SCRAPBOOK PHOTO SECTION (PERFECTLY FITTED) -->
+    <section class="photo-memory-section">
+      <div class="polaroid-70s-frame" id="polaroid-photo">
+        <div class="washi-tape-70s"></div>
+        <div class="stamp-70s">AIR MAIL • 1970s</div>
+        <div class="photo-img-container">
+          <img src="ChatGPT Image 10 Eyl 2026 19_20_58.png" alt="Ceren ve Sabri - Bizim Masalımız" id="main-photo">
+        </div>
+        <div class="polaroid-script-caption">Bizim İlk Masalımız ✨</div>
+      </div>
+
+      <div class="photo-story-box">
+        <div class="seventies-badge">📜 NOSTALJİK ANILAR</div>
+        <h2 class="section-title-70s">İlk Günden Gelen Sıcaklık</h2>
+        <p style="color: var(--retro-70s-blush); font-size: 1.2rem;">
+          Instagram'da tanışmamızın üzerinden daha 1 gün geçmişken, sanki yıllardır birbirimizi tanıyormuş gibi tam 7 saat boyunca saatlerce konuşabilmek...
+        </p>
+        <blockquote class="seventies-quote-block">
+          "Senin benim için konfor alanından çıkman, bana zihnini ve kalbini açman, merak ettiğin her şeyi sorman hayatımın en güzel hediyesi."
+        </blockquote>
+        <p style="color: var(--retro-70s-amber); font-size: 0.95rem;">
+          💡 <em>Fotoğrafa tıklayarak büyük boyutta inceleyebilirsin!</em>
+        </p>
+      </div>
+    </section>
+
+    <!-- ACROSTIC POETRY SECTION (C-E-R-E-N) -->
+    <section class="acrostic-section">
+      <div class="text-center">
+        <div class="seventies-badge">✒️ İSME ÖZEL ŞİİR</div>
+        <h2 class="romantic-script-title">Ceren İçin Akrostiş</h2>
+        <p class="section-desc-italic">Harflere tıklayarak senin için yazdığım satırları tek tek keşfet...</p>
+      </div>
+
+      <div class="acrostic-cards-container">
+        <div class="acrostic-card-70s" data-letter="C">
+          <div class="acrostic-letter-drop">C</div>
+          <div class="acrostic-poem-text">
+            <span class="lead-letter">C</span>anım, mutlu yalnız seninle,
+          </div>
+        </div>
+
+        <div class="acrostic-card-70s" data-letter="E">
+          <div class="acrostic-letter-drop">E</div>
+          <div class="acrostic-poem-text">
+            <span class="lead-letter">E</span>llerim umutla yarında, arda kalan yıllarda.
+          </div>
+        </div>
+
+        <div class="acrostic-card-70s" data-letter="R">
+          <div class="acrostic-letter-drop">R</div>
+          <div class="acrostic-poem-text">
+            <span class="lead-letter">R</span>engârenk geçen beyaz günlerinde,
+          </div>
+        </div>
+
+        <div class="acrostic-card-70s" data-letter="E">
+          <div class="acrostic-letter-drop">E</div>
+          <div class="acrostic-poem-text">
+            <span class="lead-letter">E</span>sen her rüzgârda sevginle mutluluğuna
+          </div>
+        </div>
+
+        <div class="acrostic-card-70s" data-letter="N">
+          <div class="acrostic-letter-drop">N</div>
+          <div class="acrostic-poem-text">
+            <span class="lead-letter">N</span>ail olmak; seninle umutlanıp, seninle gülmek, Her şeyin en güzeli seni sevmek.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- "SEN SORMAYA DEVAM ET" & 70s QUESTIONS CORNER -->
+    <section class="questions-section">
+      <div class="text-center">
+        <div class="seventies-badge">💌 SEN SOR, BEN DİNLEYEYİM</div>
+        <h2 class="romantic-script-title">Sürekli Soru Sorman Çok Hoşuma Gidiyor</h2>
+        <p class="section-desc-italic">Fikirlerini, merak ettiklerini ve düşüncelerini saatlerce dinlemeye hazırım.</p>
+      </div>
+
+      <div class="seventies-comfort-grid">
+        <div class="seventies-comfort-card">
+          <div class="comfort-icon-70s">🎙️</div>
+          <h3 class="comfort-card-heading">7 Saatlik Nostaljik Sohbet</h3>
+          <p class="comfort-card-body">
+            İlk günden 7 saat boyunca saatlerin nasıl aktığını anlamadan konuşmak... Sesindeki o sıcaklık her saniyeyi unutulmaz kıldı.
+          </p>
+        </div>
+
+        <div class="seventies-comfort-card">
+          <div class="comfort-icon-70s">❓</div>
+          <h3 class="comfort-card-heading">Meraklı Soruların</h3>
+          <p class="comfort-card-body">
+            Bana sürekli soru sorman inanılmaz hoşuma gidiyor. Senin dünyanı, derinliklerini ve düşüncelerini öğrenmek paha biçilemez!
+          </p>
+        </div>
+
+        <div class="seventies-comfort-card">
+          <div class="comfort-icon-70s">🚀</div>
+          <h3 class="comfort-card-heading">Benim İçin Konfor Alanından Çıkman</h3>
+          <p class="comfort-card-body">
+            Senin benim için konfor alanından çıkarak bana alan açman, merakla sorular sorman ve fikirlerini benimle paylaşman bana büyük bir huzur ve mutluluk veriyor.
+          </p>
+        </div>
+      </div>
+
+      <!-- 70s Parchment Question Desk -->
+      <div class="seventies-question-desk">
+        <div class="desk-stamp-badge">POSTAGE PAID • FOR CEREN</div>
+        <div class="desk-header-script">Ceren'in Telgraf Masası</div>
+        <p class="desk-subtitle-italic">
+          Aklına takılan bir soruyu veya tatlı bir düşünceyi yaz; mühürlediğinde gökyüzüne doğru süzülen bir aşk balonuna dönüşecek:
+        </p>
+
+        <form id="question-form" style="display: flex; flex-direction: column; gap: 1.2rem; max-width: 650px; margin: 0 auto;">
+          <textarea id="question-input" class="desk-textarea" placeholder="Bana sormak istediğin soru veya aklındaki tatlı düşünce..." required></textarea>
+          <button type="submit" id="submit-question-btn" class="btn-70s-stamp">
+            <span>MÜHÜRLE & BALONLA GÖNDER 🎈✉️</span>
+          </button>
+        </form>
+
+        <div class="prompt-tags-70s">
+          <span style="font-size: 0.85rem; width: 100%; text-align: center; color: #87233c; font-weight: bold;">★ HIZLI SORU FİKİRLERİ ★</span>
+          <button class="tag-70s" data-q="Bugün benimle ilgili aklından ilk geçen şey neydi?">"İlk ne düşündün?"</button>
+          <button class="tag-70s" data-q="Dün 7 saat sesli konuşurken zaman sence nasıl geçti?">"7 saatlik rekor sohbet"</button>
+          <button class="tag-70s" data-q="Bir sonraki uzun telefon sohbetimiz ne zaman olsun?">"Bir sonraki sohbet"</button>
+          <button class="tag-70s" data-q="Bana sormak istediğin 3 gizli soru nedir?">"3 Gizli Soru"</button>
+        </div>
+
+        <div id="question-response-toast" class="response-toast-70s">
+          <div style="font-weight: bold; color: #9d2b45; margin-bottom: 4px;" id="toast-title">✉️ Balonun Gökyüzüne Bırakıldı!</div>
+          <div id="toast-body"></div>
+        </div>
+
+        <div id="questions-history" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 8px;"></div>
+      </div>
+    </section>
+
+    <!-- EXTRA INTERACTIVE FLIRT EVENTS & GAMES SECTION -->
+    <section class="flirt-events-section">
+      <div class="text-center">
+        <div class="seventies-badge">🎯 ÖZEL FLÖRT OYUNLARI</div>
+        <h2 class="romantic-script-title">Bizim İçin Flört Etkinlikleri</h2>
+        <p class="section-desc-italic">Şansını dene, gizli notları kazı ve uyum testimizi çöz!</p>
+      </div>
+
+      <div class="flirt-events-grid">
+        <!-- Event 1: Flirt Spin Wheel -->
+        <div class="flirt-event-card">
+          <div>
+            <div class="seventies-badge" style="font-size: 0.75rem;">🎡 AŞK ÇARKI</div>
+            <h3 style="font-family: var(--font-serif); font-style: italic; font-size: 1.45rem; margin-top: 5px;">Flört Çarkıfeleği</h3>
+            <p style="color: var(--retro-70s-blush); font-size: 0.95rem;">Çevir ve bugünkü tatlı görevimizi öğren!</p>
+          </div>
+
+          <div class="wheel-container">
+            <div class="wheel-pointer"></div>
+            <canvas id="flirt-wheel-canvas" class="flirt-wheel-canvas" width="260" height="260"></canvas>
+            <div class="wheel-center-pin">💖</div>
+          </div>
+
+          <div id="wheel-result-text" class="wheel-result-box">Çarkı çevirmek için tıkla!</div>
+
+          <button id="spin-wheel-btn" class="btn-70s-stamp" style="width: 100%; justify-content: center;">
+            <span>ÇARKI ÇEVİR 🎯</span>
+          </button>
+        </div>
+
+        <!-- Event 2: Scratch Card -->
+        <div class="flirt-event-card">
+          <div>
+            <div class="seventies-badge" style="font-size: 0.75rem;">✨ GİZLİ SÜRPRİZ</div>
+            <h3 style="font-family: var(--font-serif); font-style: italic; font-size: 1.45rem; margin-top: 5px;">Kazı-Kazan Aşk Notu</h3>
+            <p style="color: var(--retro-70s-blush); font-size: 0.95rem;">Parmağınla veya fareyle kazı ve oku!</p>
+          </div>
+
+          <div class="scratch-container" id="scratch-wrapper">
+            <div class="scratch-hidden-content">
+              <div style="font-family: var(--font-script); font-size: 1.6rem; color: #9d2b45; font-weight: bold; line-height: 1.2;">
+                "Gözlerinin güzelliği ve sesindeki neşe dünyalara bedel Ceren..."
+              </div>
+              <div style="font-family: var(--font-serif); font-size: 0.8rem; color: #e76f51; margin-top: 4px;">❤️ Sabri'den Sana Özel</div>
+            </div>
+            <canvas id="scratch-canvas" class="scratch-canvas" width="280" height="150"></canvas>
+          </div>
+
+          <button id="reset-scratch-btn" class="btn-70s-stamp" style="width: 100%; justify-content: center;">
+            <span>YENİDEN KAZI ✨</span>
+          </button>
+        </div>
+
+        <!-- Event 3: Chemistry Quiz -->
+        <div class="flirt-event-card">
+          <div>
+            <div class="seventies-badge" style="font-size: 0.75rem;">🔮 UYUM TESTİ</div>
+            <h3 style="font-family: var(--font-serif); font-style: italic; font-size: 1.45rem; margin-top: 5px;">Ceren & Sabri Uyumu</h3>
+            <p style="color: var(--retro-70s-blush); font-size: 0.95rem;">Soruları cevapla, uyumumuzu gör!</p>
+          </div>
+
+          <div id="quiz-container" class="quiz-steps-container">
+            <div id="quiz-question-title" class="quiz-question-title">1. Gece 02:00'de telefon çalsa ne yaparsın?</div>
+            <div id="quiz-options" class="quiz-options-list">
+              <button class="quiz-btn-option" data-ans="A">A) 7 saat daha konuşurum!</button>
+              <button class="quiz-btn-option" data-ans="B">B) Ceren sorar, ben dinlerim ❤️</button>
+            </div>
+          </div>
+
+          <button id="restart-quiz-btn" class="btn-70s-stamp" style="width: 100%; justify-content: center; display: none;">
+            <span>TESTİ YENİDEN ÇÖZ 🔄</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLASSIC RETRO SWEETNESS METER & BUCKET LIST -->
+    <section class="games-section">
+      <div class="text-center">
+        <div class="seventies-badge">🎲 TATLI DETAYLAR</div>
+        <h2 class="romantic-script-title">Küçük Sürprizler</h2>
+        <p class="section-desc-italic">Tatlılık ölçeri, şans kurabiyesi ve ortak hayallerimiz!</p>
+      </div>
+
+      <div class="seventies-games-grid">
+        <!-- Game 1: 70s Sweetness Meter -->
+        <div class="game-card-70s">
+          <div>
+            <div class="seventies-badge" style="font-size: 0.75rem;">AŞK & TATLILIK METRESİ</div>
+            <h3 style="font-family: var(--font-serif); font-style: italic; font-size: 1.5rem; margin-top: 5px;">Bugün Ceren Ne Kadar Tatlı?</h3>
+          </div>
+
+          <div style="margin: 1.2rem 0;">
+            <div id="sweetness-value" class="meter-score-70s">%100</div>
+            <input type="range" id="sweetness-slider" class="slider-70s" min="100" max="1000000" value="100" step="100">
+          </div>
+
+          <div id="sweetness-status" style="font-family: var(--font-serif); font-style: italic; color: var(--retro-70s-blush); min-height: 48px; font-size: 1.15rem;">
+            Dünyanın en tatlı kızı ✨
+          </div>
+
+          <button id="confetti-btn" class="btn-70s-stamp" style="width: 100%; justify-content: center; margin-top: 1rem;">
+            <span>KONFETİ YAĞMURU BAŞLAT 🎊</span>
+          </button>
+        </div>
+
+        <!-- Game 2: 70s Fortune Cookie -->
+        <div class="game-card-70s">
+          <div>
+            <div class="seventies-badge" style="font-size: 0.75rem;">NOSTALJİK KEHANET</div>
+            <h3 style="font-family: var(--font-serif); font-style: italic; font-size: 1.5rem; margin-top: 5px;">Şans Kurabiyesi</h3>
+          </div>
+
+          <div id="fortune-cookie-btn" class="cookie-icon-70s">🥠</div>
+          <div id="fortune-message" class="fortune-text-70s">Kurabiyeye tıkla ve bugünün iltifatını aç!</div>
+
+          <button id="new-fortune-btn" class="btn-70s-stamp" style="width: 100%; justify-content: center; margin-top: 1rem;">
+            <span>YENİ KURABİYE KIR ✨</span>
+          </button>
+        </div>
+
+        <!-- Game 3: 70s Bucket List -->
+        <div class="game-card-70s">
+          <div>
+            <div class="seventies-badge" style="font-size: 0.75rem;">ORTAK HAYALLER</div>
+            <h3 style="font-family: var(--font-serif); font-style: italic; font-size: 1.5rem; margin-top: 5px;">Birlikte Yapılacaklar</h3>
+          </div>
+
+          <div class="bucket-list-70s">
+            <div class="bucket-item-70s checked">
+              <div class="checkbox-70s">✓</div>
+              <span>7 saatlik rekor sohbet yapmak</span>
+            </div>
+            <div class="bucket-item-70s">
+              <div class="checkbox-70s"></div>
+              <span>70'ler temalı bir kafede kahve içmek</span>
+            </div>
+            <div class="bucket-item-70s">
+              <div class="checkbox-70s"></div>
+              <span>Ortak bir nostaljik kaset listesi yapmak</span>
+            </div>
+            <div class="bucket-item-70s">
+              <div class="checkbox-70s"></div>
+              <span>Bitmek bilmeyen meraklı sorular sormak</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WAX-SEALED 70s LETTER SECTION -->
+    <section style="margin: 4.5rem 0 2rem 0; text-align: center;">
+      <div class="envelope-70s-trigger" id="envelope-trigger">
+        <div class="wax-seal-70s">💌</div>
+        <h3 class="romantic-script-title" style="font-size: clamp(2.8rem, 7vw, 4rem); color: #fff; margin-bottom: 0.2rem;">Ceren'e Mühürlü Mektup</h3>
+        <p style="color: var(--retro-70s-blush); font-size: 1.25rem;">
+          Mühre tıkla ve senin için yazılmış özel satırları oku...
+        </p>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>Ceren için sevgiyle, 70'ler nostaljisiyle ve özenle hazırlandı 💖 | <span>Retro Romance Story</span></p>
+    </footer>
+
+  </div>
+
+  <!-- TAP & HOLD FLOATING HINT -->
+  <div class="tap-hold-hint">
+    ✨ Ekrana dokun ve basılı tut: Basılı tuttukça kalp devasa büyür! ❤️
+  </div>
+
+  <!-- LIGHTBOX MODAL FOR PHOTO -->
+  <div id="lightbox-modal" class="lightbox-modal">
+    <img src="ChatGPT Image 10 Eyl 2026 19_20_58.png" alt="Bizim Fotoğrafımız" class="lightbox-img">
+  </div>
+
+  <!-- WAX SEAL SECRET LETTER MODAL -->
+  <div id="letter-modal" class="modal-overlay">
+    <div class="parchment-letter-70s">
+      <button id="modal-close-btn" class="modal-close-70s">✕</button>
+      <div class="letter-header-script">Sevgili Ceren,</div>
+      <div class="letter-body-italic">
+        <p>
+          Instagram'da tanıştığımız ilk günden itibaren hayatıma kattığın renk ve samimiyet tarif edilemez. Dün tam 7 saat boyunca saatlerce konuşabilmek, senin o tatlı sesini duymak ve meraklı sorularını dinlemek bana inanılmaz büyük bir huzur verdi.
+        </p>
+        <p style="margin-top: 1.2rem;">
+          Senin benim için konfor alanından çıkman, zihnindeki tüm düşünceleri ve merak ettiklerini benimle paylaşman hayatımda yaşadığım en özel duygulardan biri. Bana dilediğin kadar soru sorabilirsin; çünkü seni dinlemek benim en favori anım!
+        </p>
+        <p style="margin-top: 1.2rem;">
+          İyi ki tanışmışız, umarım bu nostaljik 70'ler sürprizi yüzünde sıcacık bir tebessüm oluşturmuştur. ✨
+        </p>
+      </div>
+      <div class="letter-sign-script">Seni Dinleyen Biri... ❤️</div>
+    </div>
+  </div>
+
+  <!-- Custom JavaScript Logic -->
+  <script src="app.js"></script>
+</body>
+</html>

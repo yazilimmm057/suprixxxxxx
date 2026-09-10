@@ -1,0 +1,1417 @@
+/* ==========================================================================
+   CEREN'S UNIVERSE - 70s RETRO ROMANCE & GROOVY SUNSET LOVE
+   All-Italic Romantic Typography • Mobile-First Responsive • Unique 70s Design
+   Interactive Floating Message Balloons • Flirt Wheel • Scratch Card • Love Quiz
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600;1,700&family=Great+Vibes&family=Italianno&family=Playfair+Display:ital,wght@1,400;1,600;1,700;1,900&family=Plus+Jakarta+Sans:ital,wght@1,300;1,400;1,500;1,600;1,700&display=swap');
+
+:root {
+  /* 70s Sunset & Velvet Romantic Palette */
+  --bg-70s-dark: #1a0b14;
+  --bg-70s-warm: #26101f;
+  --bg-70s-card: rgba(48, 22, 40, 0.85);
+  --bg-70s-parchment: #fff8ee;
+  
+  --retro-70s-amber: #f9b233;
+  --retro-70s-sunset: #e76f51;
+  --retro-70s-terracotta: #c85a53;
+  --retro-70s-rose: #ea7396;
+  --retro-70s-blush: #f4c2cb;
+  --retro-70s-gold: #e8c371;
+  --retro-70s-cream: #fff5eb;
+  
+  --border-70s-gold: rgba(249, 178, 51, 0.4);
+  --border-70s-rose: rgba(234, 115, 150, 0.35);
+  
+  /* Fonts */
+  --font-script: 'Great Vibes', 'Alex Brush', cursive;
+  --font-italianno: 'Italianno', cursive;
+  --font-serif: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  
+  --shadow-70s-glow: 0 0 35px rgba(234, 115, 150, 0.3), 0 10px 30px rgba(0, 0, 0, 0.6);
+  --shadow-70s-sunset: 0 15px 40px rgba(231, 111, 81, 0.25);
+  
+  --radius-xl: 28px;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-style: italic;
+  background: var(--bg-70s-dark);
+  background-image: 
+    radial-gradient(circle at 10% 15%, rgba(231, 111, 81, 0.22) 0%, transparent 45%),
+    radial-gradient(circle at 90% 85%, rgba(234, 115, 150, 0.2) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(60, 25, 48, 0.6) 0%, var(--bg-70s-dark) 100%);
+  color: var(--retro-70s-cream);
+  line-height: 1.7;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* 70s Groovy Sunset Wave Background Bands */
+.retro-sunset-stripes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.12;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 40px,
+    rgba(249, 178, 51, 0.3) 40px,
+    rgba(249, 178, 51, 0.3) 50px,
+    rgba(231, 111, 81, 0.3) 50px,
+    rgba(231, 111, 81, 0.3) 60px,
+    rgba(234, 115, 150, 0.3) 60px,
+    rgba(234, 115, 150, 0.3) 70px
+  );
+}
+
+/* Background Particle Canvas */
+#particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Interactive Growing Heart Overlay Layer */
+#interactive-hearts-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.growing-heart-node {
+  position: absolute;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: none;
+  filter: drop-shadow(0 0 25px rgba(234, 115, 150, 0.85)) drop-shadow(0 0 10px rgba(249, 178, 51, 0.6));
+  transform-origin: center center;
+  transition: transform 0.05s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+
+.growing-heart-node.popping {
+  animation: floatUpAndBurst 1.2s forwards cubic-bezier(0.12, 0.8, 0.32, 1);
+}
+
+@keyframes floatUpAndBurst {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(var(--target-scale, 1));
+  }
+  70% {
+    opacity: 0.9;
+    transform: translate(-50%, -120px) scale(calc(var(--target-scale, 1) * 1.15));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -180px) scale(calc(var(--target-scale, 1) * 1.3));
+  }
+}
+
+/* ==========================================================================
+   RISING FLOATING MESSAGE BALLOONS (EN ALTTAN EN ÜSTE SÜZÜLEN BALONLAR)
+   ========================================================================== */
+#floating-balloons-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9990;
+  overflow: hidden;
+}
+
+.floating-message-balloon {
+  position: absolute;
+  bottom: -150px;
+  pointer-events: auto;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.45) 0%, rgba(234, 115, 150, 0.75) 40%, rgba(231, 111, 81, 0.85) 100%);
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  padding: 20px 24px;
+  min-width: 180px;
+  max-width: 280px;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(234, 115, 150, 0.7),
+    inset 0 0 15px rgba(255, 255, 255, 0.6);
+  animation: balloonRiseDrift 14s ease-in forwards;
+  transition: transform 0.2s ease;
+}
+
+.floating-message-balloon:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.balloon-text {
+  font-family: var(--font-script);
+  font-style: italic;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  line-height: 1.2;
+  text-shadow: 0 0 15px rgba(0, 0, 0, 0.6), 0 2px 4px rgba(0, 0, 0, 0.4);
+  word-break: break-word;
+}
+
+.balloon-heart-tag {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: var(--retro-70s-amber);
+  margin-top: 4px;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 2px 8px;
+  border-radius: 50px;
+}
+
+.balloon-string {
+  position: absolute;
+  bottom: -32px;
+  left: 50%;
+  width: 2px;
+  height: 34px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), transparent);
+  transform: translateX(-50%);
+}
+
+@keyframes balloonRiseDrift {
+  0% {
+    bottom: -150px;
+    transform: translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  25% {
+    transform: translateX(35px) rotate(4deg);
+  }
+  50% {
+    transform: translateX(-35px) rotate(-4deg);
+  }
+  75% {
+    transform: translateX(25px) rotate(3deg);
+  }
+  95% {
+    opacity: 0.95;
+  }
+  100% {
+    bottom: 110vh;
+    transform: translateX(-15px) rotate(-2deg);
+    opacity: 0;
+  }
+}
+
+/* Mobile-First App Wrapper */
+.app-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.2rem 1rem 5rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .app-wrapper {
+    padding: 2.5rem 2rem 6rem 2rem;
+  }
+}
+
+/* 70s Vinyl Floating Audio Bar */
+.retro-vinyl-bar {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(38, 16, 31, 0.9);
+  backdrop-filter: blur(16px);
+  border: 1.5px solid var(--retro-70s-gold);
+  padding: 8px 16px;
+  border-radius: 50px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(249, 178, 51, 0.25);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.retro-vinyl-bar:hover {
+  transform: scale(1.04);
+  border-color: var(--retro-70s-sunset);
+}
+
+.mini-vinyl-disk {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #f9b233 20%, #111 25%, #2a1520 60%, #000 100%);
+  border: 1.5px solid #f9b233;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: spinVinyl 4s linear infinite;
+  animation-play-state: paused;
+}
+
+.retro-vinyl-bar.playing .mini-vinyl-disk {
+  animation-play-state: running;
+}
+
+@keyframes spinVinyl {
+  100% { transform: rotate(360deg); }
+}
+
+.mini-vinyl-center {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ea7396;
+}
+
+.retro-audio-label {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--retro-70s-gold);
+}
+
+/* --------------------------------------------------------------------------
+   70s ROMANTIC TYPOGRAPHY & HEADERS (ALL ITALIC)
+   -------------------------------------------------------------------------- */
+.seventies-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--retro-70s-amber);
+  background: rgba(249, 178, 51, 0.12);
+  border: 1.5px solid var(--border-70s-gold);
+  padding: 6px 18px;
+  border-radius: 50px;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.5px;
+}
+
+.romantic-script-hero {
+  font-family: var(--font-script);
+  font-style: italic;
+  font-size: clamp(3.2rem, 9vw, 5.8rem);
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.1;
+  text-shadow: 
+    0 0 30px rgba(234, 115, 150, 0.6),
+    0 0 60px rgba(231, 111, 81, 0.3),
+    3px 4px 0px rgba(0, 0, 0, 0.6);
+  margin-bottom: 0.6rem;
+}
+
+.romantic-script-title {
+  font-family: var(--font-script);
+  font-style: italic;
+  font-size: clamp(2.6rem, 7vw, 4.4rem);
+  font-weight: 400;
+  color: var(--retro-70s-blush);
+  line-height: 1.15;
+  text-shadow: 0 0 25px rgba(234, 115, 150, 0.5);
+  margin-bottom: 0.5rem;
+}
+
+.section-title-70s {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 700;
+  color: var(--retro-70s-cream);
+  line-height: 1.25;
+  margin-bottom: 0.8rem;
+}
+
+.section-desc-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 3vw, 1.3rem);
+  color: var(--retro-70s-blush);
+  max-width: 680px;
+  margin: 0 auto 2.5rem auto;
+  line-height: 1.6;
+}
+
+.text-center { text-align: center; }
+
+/* --------------------------------------------------------------------------
+   HERO SECTION & 70s CASSETTE SOHBET KARTI
+   -------------------------------------------------------------------------- */
+.hero-section {
+  padding: 3rem 0.5rem 2rem 0.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.hero-tagline-70s {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.15rem, 3.2vw, 1.55rem);
+  color: var(--retro-70s-cream);
+  max-width: 780px;
+  margin: 0 auto 2rem auto;
+  line-height: 1.7;
+}
+
+.hero-tagline-70s .highlight-sunset {
+  color: var(--retro-70s-amber);
+  font-weight: 700;
+  border-bottom: 2px dashed var(--retro-70s-sunset);
+  padding-bottom: 2px;
+}
+
+/* 70s Sunset Curved Mixtape Widget */
+.seventies-tape-box {
+  max-width: 580px;
+  width: 100%;
+  margin: 2rem auto;
+  background: linear-gradient(135deg, #38162b 0%, #200d1a 100%);
+  border: 2px solid var(--retro-70s-gold);
+  border-radius: var(--radius-xl);
+  padding: 20px;
+  box-shadow: var(--shadow-70s-glow);
+  position: relative;
+}
+
+.tape-inner-label {
+  background: var(--bg-70s-parchment);
+  color: #2b121f;
+  padding: 18px 16px;
+  border-radius: var(--radius-md);
+  border: 2px solid #e2cfb7;
+  position: relative;
+}
+
+.tape-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #e76f51;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 700;
+  color: #e76f51;
+}
+
+.tape-song-title {
+  font-family: var(--font-script);
+  font-style: italic;
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  color: #1a0b14;
+  line-height: 1.1;
+  margin: 5px 0;
+}
+
+.tape-reels {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin: 12px 0 8px 0;
+}
+
+.tape-reel-disk {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #26101f;
+  border: 3px solid #f9b233;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tape-reel-center {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff8ee;
+  border: 2px dotted #e76f51;
+}
+
+.tape-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #5d3544;
+  margin-top: 8px;
+}
+
+/* 70s Stats Grid */
+.seventies-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+
+.seventies-stat-card {
+  background: var(--bg-70s-card);
+  backdrop-filter: blur(14px);
+  border: 1.5px solid var(--border-70s-gold);
+  border-radius: var(--radius-lg);
+  padding: 1.6rem 1.2rem;
+  text-align: center;
+  transition: var(--transition-smooth);
+}
+
+.seventies-stat-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--retro-70s-sunset);
+  box-shadow: var(--shadow-70s-glow);
+}
+
+.seventies-stat-icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.seventies-stat-number {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--retro-70s-amber);
+}
+
+.seventies-stat-label {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--retro-70s-blush);
+  margin-top: 0.3rem;
+}
+
+/* --------------------------------------------------------------------------
+   PHOTO FRAME SECTION - FLAWLESSLY FITTED & RESPONSIVE
+   -------------------------------------------------------------------------- */
+.photo-memory-section {
+  margin: 4rem 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .photo-memory-section {
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+  }
+}
+
+.polaroid-70s-frame {
+  background: #faf4eb;
+  padding: 16px 16px 24px 16px;
+  border-radius: 12px;
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.7),
+    0 0 35px rgba(234, 115, 150, 0.35);
+  transform: rotate(-2deg);
+  transition: var(--transition-smooth);
+  cursor: pointer;
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  border: 1px solid #ebd9c5;
+}
+
+.polaroid-70s-frame:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: 0 30px 65px rgba(0, 0, 0, 0.8), 0 0 45px rgba(249, 178, 51, 0.4);
+}
+
+.washi-tape-70s {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(1deg);
+  width: 120px;
+  height: 30px;
+  background: rgba(249, 178, 51, 0.75);
+  border: 1px dashed rgba(231, 111, 81, 0.8);
+  z-index: 10;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.stamp-70s {
+  position: absolute;
+  top: 10px;
+  right: -12px;
+  background: #e76f51;
+  color: #fff;
+  border: 2px dashed #faf4eb;
+  padding: 6px 10px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.75rem;
+  font-weight: bold;
+  transform: rotate(10deg);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 12;
+}
+
+.photo-img-container {
+  width: 100%;
+  aspect-ratio: 4 / 4.8;
+  max-height: 440px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #111;
+  position: relative;
+}
+
+.photo-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  filter: sepia(0.12) saturate(1.08) contrast(1.02);
+  transition: transform 0.6s ease;
+  display: block;
+}
+
+.polaroid-70s-frame:hover .photo-img-container img {
+  transform: scale(1.05);
+}
+
+.polaroid-script-caption {
+  font-family: var(--font-script);
+  font-style: italic;
+  color: #26101f;
+  font-size: clamp(2.2rem, 5vw, 2.7rem);
+  font-weight: 500;
+  text-align: center;
+  margin-top: 12px;
+  line-height: 1.1;
+}
+
+.photo-story-box {
+  background: var(--bg-70s-card);
+  backdrop-filter: blur(16px);
+  border: 1.5px solid var(--border-70s-gold);
+  border-radius: var(--radius-lg);
+  padding: 2.2rem 1.8rem;
+}
+
+.seventies-quote-block {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--retro-70s-amber);
+  border-left: 3.5px solid var(--retro-70s-sunset);
+  padding-left: 1.2rem;
+  margin: 1.6rem 0;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   ACROSTIC POETRY (C-E-R-E-N)
+   -------------------------------------------------------------------------- */
+.acrostic-section {
+  margin: 4.5rem 0;
+}
+
+.acrostic-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.acrostic-card-70s {
+  background: linear-gradient(135deg, rgba(50, 22, 42, 0.9) 0%, rgba(32, 13, 26, 0.95) 100%);
+  backdrop-filter: blur(14px);
+  border: 1.5px solid var(--border-70s-gold);
+  border-radius: var(--radius-md);
+  padding: 1.3rem 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.acrostic-card-70s::after {
+  content: '❤️';
+  position: absolute;
+  right: 18px;
+  font-size: 1.2rem;
+  opacity: 0.2;
+  transition: var(--transition-smooth);
+}
+
+.acrostic-card-70s:hover, .acrostic-card-70s.active {
+  background: linear-gradient(135deg, rgba(75, 30, 60, 0.95) 0%, rgba(45, 18, 36, 0.98) 100%);
+  border-color: var(--retro-70s-amber);
+  transform: translateX(8px);
+  box-shadow: var(--shadow-70s-glow);
+}
+
+.acrostic-card-70s:hover::after, .acrostic-card-70s.active::after {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.acrostic-letter-drop {
+  font-family: var(--font-script);
+  font-style: italic;
+  font-size: clamp(3rem, 7vw, 4rem);
+  line-height: 1;
+  color: var(--retro-70s-amber);
+  min-width: 50px;
+  text-align: center;
+  text-shadow: 0 0 15px rgba(249, 178, 51, 0.5);
+}
+
+.acrostic-poem-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.15rem, 3.2vw, 1.4rem);
+  color: var(--retro-70s-cream);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.acrostic-poem-text .lead-letter {
+  color: var(--retro-70s-blush);
+  font-size: 1.5rem;
+  font-family: var(--font-script);
+  font-style: italic;
+  font-weight: 700;
+  margin-right: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   "SEN SORMAYA DEVAM ET" & 70s QUESTIONS CORNER
+   -------------------------------------------------------------------------- */
+.questions-section {
+  margin: 4.5rem 0;
+}
+
+.seventies-comfort-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.seventies-comfort-card {
+  background: var(--bg-70s-card);
+  backdrop-filter: blur(14px);
+  border: 1.5px solid var(--border-70s-gold);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem;
+  transition: var(--transition-smooth);
+}
+
+.seventies-comfort-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--retro-70s-sunset);
+  box-shadow: var(--shadow-70s-glow);
+}
+
+.comfort-icon-70s {
+  font-size: 2.2rem;
+  margin-bottom: 0.6rem;
+}
+
+.comfort-card-heading {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--retro-70s-cream);
+  margin-bottom: 0.6rem;
+}
+
+.comfort-card-body {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--retro-70s-blush);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* 70s Parchment Question Desk */
+.seventies-question-desk {
+  background: #fbf6ec;
+  color: #26101f;
+  border-radius: var(--radius-xl);
+  padding: 2.5rem 1.8rem;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+  border: 2px solid #dfcfb8;
+  position: relative;
+}
+
+.desk-stamp-badge {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: 1.5px dashed #e76f51;
+  color: #e76f51;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.desk-header-script {
+  font-family: var(--font-script);
+  font-style: italic;
+  font-size: clamp(2.5rem, 6vw, 3.4rem);
+  color: #9d2b45;
+  text-align: center;
+  margin-bottom: 0.3rem;
+  line-height: 1;
+}
+
+.desk-subtitle-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  text-align: center;
+  color: #63404c;
+  font-size: 1.15rem;
+  margin-bottom: 1.8rem;
+}
+
+.desk-textarea {
+  width: 100%;
+  padding: 1.2rem 1.4rem;
+  border-radius: var(--radius-sm);
+  background: #fff;
+  border: 2px solid #d4c2a8;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #26101f;
+  outline: none;
+  transition: var(--transition-smooth);
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.6;
+}
+
+.desk-textarea:focus {
+  border-color: #e76f51;
+  box-shadow: 0 0 15px rgba(231, 111, 81, 0.3);
+}
+
+.btn-70s-stamp {
+  background: linear-gradient(135deg, #e76f51 0%, #b8405e 100%);
+  color: #fff;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 0.9rem 2.2rem;
+  border-radius: 50px;
+  border: 2px solid #fff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: var(--transition-smooth);
+  box-shadow: 0 8px 25px rgba(231, 111, 81, 0.45);
+  align-self: center;
+  margin-top: 0.5rem;
+}
+
+.btn-70s-stamp:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(231, 111, 81, 0.65);
+}
+
+.prompt-tags-70s {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.tag-70s {
+  background: #f1e4d3;
+  border: 1px solid #d4c2a8;
+  border-radius: 50px;
+  padding: 8px 15px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.92rem;
+  color: #7a3546;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.tag-70s:hover {
+  background: #ebd0d7;
+  border-color: #b8405e;
+  transform: translateY(-2px);
+}
+
+.response-toast-70s {
+  margin-top: 1.6rem;
+  padding: 1.4rem;
+  border-radius: var(--radius-sm);
+  background: #f4e6d4;
+  border-left: 4px solid #e76f51;
+  display: none;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: #26101f;
+}
+
+/* ==========================================================================
+   EXTRA FLIRTY EVENTS & INTERACTIVE GAMES SECTION
+   ========================================================================== */
+.flirt-events-section {
+  margin: 5rem 0;
+}
+
+.flirt-events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.2rem;
+}
+
+.flirt-event-card {
+  background: linear-gradient(145deg, rgba(48, 20, 40, 0.9) 0%, rgba(26, 10, 20, 0.95) 100%);
+  backdrop-filter: blur(16px);
+  border: 1.5px solid var(--border-70s-gold);
+  border-radius: var(--radius-xl);
+  padding: 2.2rem 1.6rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-70s-glow);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Event 1: Flirt Spin Wheel */
+.wheel-container {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  margin: 1.5rem auto;
+}
+
+.wheel-pointer {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 24px solid var(--retro-70s-amber);
+  z-index: 20;
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+}
+
+.flirt-wheel-canvas {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: 0 0 25px rgba(249, 178, 51, 0.4), inset 0 0 15px rgba(0,0,0,0.6);
+  border: 4px solid var(--retro-70s-gold);
+  transition: transform 4s cubic-bezier(0.17, 0.97, 0.28, 1);
+}
+
+.wheel-center-pin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #f9b233 30%, #e76f51 100%);
+  border: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  z-index: 10;
+}
+
+.wheel-result-box {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--retro-70s-amber);
+  font-size: 1.2rem;
+  font-weight: 700;
+  min-height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+/* Event 2: Scratch Card */
+.scratch-container {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  height: 150px;
+  margin: 1.5rem auto;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  border: 2px solid var(--retro-70s-gold);
+}
+
+.scratch-hidden-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff8ee;
+  color: #2b121f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  text-align: center;
+  user-select: none;
+}
+
+.scratch-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  z-index: 10;
+}
+
+/* Event 3: Chemistry Quiz */
+.quiz-steps-container {
+  margin: 1.2rem 0;
+  min-height: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.quiz-question-title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--retro-70s-cream);
+  margin-bottom: 1rem;
+}
+
+.quiz-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quiz-btn-option {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid var(--border-70s-gold);
+  color: var(--retro-70s-cream);
+  padding: 10px 16px;
+  border-radius: 50px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  text-align: center;
+}
+
+.quiz-btn-option:hover {
+  background: rgba(234, 115, 150, 0.3);
+  border-color: var(--retro-70s-amber);
+  transform: scale(1.02);
+}
+
+/* --------------------------------------------------------------------------
+   GAMES SECTION (SWEETNESS METER & BUCKET LIST)
+   -------------------------------------------------------------------------- */
+.games-section {
+  margin: 4.5rem 0;
+}
+
+.seventies-games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.8rem;
+}
+
+.game-card-70s {
+  background: var(--bg-70s-card);
+  backdrop-filter: blur(14px);
+  border: 1.5px solid var(--border-70s-gold);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.6rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.meter-score-70s {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--retro-70s-amber);
+  margin: 0.5rem 0;
+}
+
+.slider-70s {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 10px;
+  background: #451b32;
+  outline: none;
+}
+
+.slider-70s::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--retro-70s-amber);
+  border: 2px solid #fff;
+  cursor: pointer;
+  box-shadow: 0 0 15px var(--retro-70s-amber);
+}
+
+.cookie-icon-70s {
+  font-size: 3.8rem;
+  margin: 1rem 0;
+  cursor: pointer;
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cookie-icon-70s:hover {
+  transform: scale(1.2) rotate(12deg);
+}
+
+.fortune-text-70s {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--retro-70s-blush);
+  font-size: 1.2rem;
+  min-height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.5;
+}
+
+.bucket-list-70s {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 1.4rem;
+  text-align: left;
+}
+
+.bucket-item-70s {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed var(--border-70s-gold);
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  transition: var(--transition-smooth);
+}
+
+.bucket-item-70s:hover, .bucket-item-70s.checked {
+  background: rgba(234, 115, 150, 0.18);
+  border-color: var(--retro-70s-amber);
+}
+
+.checkbox-70s {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid var(--retro-70s-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: #fff;
+}
+
+.bucket-item-70s.checked .checkbox-70s {
+  background: var(--retro-70s-sunset);
+}
+
+/* --------------------------------------------------------------------------
+   WAX-SEALED 70s ENVELOPE & MODAL
+   -------------------------------------------------------------------------- */
+.envelope-70s-trigger {
+  background: linear-gradient(135deg, #641b32 0%, #3a0e1c 100%);
+  border: 2px solid var(--retro-70s-gold);
+  border-radius: var(--radius-xl);
+  padding: 2.8rem 1.8rem;
+  box-shadow: var(--shadow-70s-glow);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.envelope-70s-trigger:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 30px 65px rgba(234, 115, 150, 0.45);
+  border-color: var(--retro-70s-amber);
+}
+
+.wax-seal-70s {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #e76f51 40%, #87233c 100%);
+  border: 3px solid #f9b233;
+  margin: 0 auto 1rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  animation: pulseSeal 2.5s infinite ease-in-out;
+}
+
+@keyframes pulseSeal {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(12, 5, 10, 0.88);
+  backdrop-filter: blur(14px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.parchment-letter-70s {
+  background: #fdf8f0;
+  color: #26101f;
+  max-width: 620px;
+  width: 100%;
+  border-radius: var(--radius-xl);
+  padding: 3rem 2.2rem;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9);
+  position: relative;
+  border: 2px solid #e0d0b8;
+  transform: scale(0.85) translateY(20px);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-overlay.active .parchment-letter-70s {
+  transform: scale(1) translateY(0);
+}
+
+.modal-close-70s {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: rgba(0, 0, 0, 0.06);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.letter-header-script {
+  font-family: var(--font-script);
+  font-style: italic;
+  font-size: clamp(3rem, 7vw, 4rem);
+  color: #9d2b45;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.letter-body-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: #3b1d28;
+}
+
+.letter-sign-script {
+  font-family: var(--font-script);
+  font-style: italic;
+  font-size: clamp(2.5rem, 6vw, 3.2rem);
+  color: #9d2b45;
+  margin-top: 2rem;
+  text-align: right;
+  line-height: 1;
+}
+
+/* Lightbox Modal */
+.lightbox-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  padding: 1rem;
+}
+
+.lightbox-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-img {
+  max-width: 95%;
+  max-height: 85vh;
+  border-radius: 12px;
+  border: 3px solid var(--retro-70s-amber);
+  box-shadow: 0 0 50px rgba(249, 178, 51, 0.5);
+  object-fit: contain;
+}
+
+/* Tap & Hold Hint Bar */
+.tap-hold-hint {
+  position: fixed;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(38, 16, 31, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--retro-70s-rose);
+  padding: 6px 18px;
+  border-radius: 50px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--retro-70s-blush);
+  z-index: 90;
+  pointer-events: none;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 3rem 1rem 1rem 1rem;
+  color: var(--retro-70s-blush);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  border-top: 1.5px dashed var(--border-70s-gold);
+  margin-top: 4rem;
+  opacity: 0.85;
+}
